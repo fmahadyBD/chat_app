@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        #content {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        #infield {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+        }
+        .message-box {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5 mb-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4>Chat APP</h4>
+            </div>
+            <div class="card-body" id="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div th:each="message : ${allmessage}" class="message-box">
+                            <div class="row">
+                                <div class="col-6" th:if="${message.name != usernameofauth}">
+                                    <div class="alert alert-secondary" role="alert" th:text="${message.messages}"></div>
+                                </div>
+                                <div class="col-6 offset-6 text-right" th:if="${message.name == usernameofauth}">
+                                    <div class="alert alert-primary" role="alert" th:text="${message.messages}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="infield">
+            <form class="row g-3" th:action="@{/admin/home}" method="post" th:object="${abc}">
+                <div class="col-md-9">
+                    <input class="form-control" th:field="*{messages}" placeholder="Enter your Message">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary btn-block" type="submit">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap and jQuery JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript to scroll to bottom -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var content = document.getElementById("content");
+            content.scrollTop = content.scrollHeight;
+        });
+    </script>
+</body>
+</html>
