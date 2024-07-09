@@ -1,6 +1,8 @@
 ## Chat App
 
 ## Chat App Version 1.0
+#### View:
+![image](https://github.com/fmahadyBD/chat_app/assets/109776849/5a8b30ce-4083-4f34-94c1-6cc496993599)
 
 #### Features:
 1. **User Registration**:
