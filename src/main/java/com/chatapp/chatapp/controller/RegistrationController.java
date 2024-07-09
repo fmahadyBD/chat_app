@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chatapp.chatapp.dao.MyUserRepository;
 import com.chatapp.chatapp.model.MyUser;
-import com.chatapp.chatapp.model.MyUserRepository;
 
 @RestController
 public class RegistrationController {

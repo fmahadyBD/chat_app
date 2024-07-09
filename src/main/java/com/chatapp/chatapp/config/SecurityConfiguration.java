@@ -1,6 +1,5 @@
 package com.chatapp.chatapp.config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.chatapp.chatapp.model.MyUserDetailService;
+import com.chatapp.chatapp.service.MyUserDetailService;
 
 @Configuration
 @EnableWebSecurity
@@ -41,7 +40,7 @@ public class SecurityConfiguration {
                 })
                 .build();
     }
-
+//-------->> This section the Inmemorey login system
 //    @Bean
 //    public UserDetailsService userDetailsService() {
 //        UserDetails normalUser = User.builder()
@@ -56,7 +55,6 @@ public class SecurityConfiguration {
 //                .build();
 //        return new InMemoryUserDetailsManager(normalUser, adminUser);
 //    }
-
     @Bean
     public UserDetailsService userDetailsService() {
         return userDetailService;

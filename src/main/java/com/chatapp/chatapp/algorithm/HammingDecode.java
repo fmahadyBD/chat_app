@@ -8,7 +8,9 @@ public class HammingDecode {
     public static int calculateParity(int[] indices, String s) {
         int count = 0;
         for (int index : indices) {
-            if (s.charAt(index) == '1') count++;
+            if (s.charAt(index) == '1') {
+                count++;
+            }
         }
         // Even parity: return 0 if the count of 1's is even, otherwise 1
         return (count % 2 == 0) ? 0 : 1;
@@ -54,7 +56,7 @@ public class HammingDecode {
         // Loop through the string and skip indices 0, 1, 3, and 7
         for (int i = 0; i < s.length(); i++) {
             if (i == 0 || i == 1 || i == 3 || i == 7) {
-                continue;
+               
             } else {
                 decodeText.append(s.charAt(i));
             }
@@ -80,7 +82,7 @@ public class HammingDecode {
         System.out.println("The Encoded test: " + s);
         String fixedBit = hdecoding(s);
         System.out.println("Final decode: ");
-       String ans= hToNormal(fixedBit);
+        String ans = hToNormal(fixedBit);
         return ans;
     }
 }

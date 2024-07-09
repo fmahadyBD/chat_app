@@ -1,4 +1,6 @@
-package com.chatapp.chatapp.model;
+package com.chatapp.chatapp.service;
+
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -7,7 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.chatapp.chatapp.dao.MyUserRepository;
+import com.chatapp.chatapp.model.MyUser;
 
 @Service
 public class MyUserDetailService implements UserDetailsService {
