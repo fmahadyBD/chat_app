@@ -65,6 +65,7 @@ http://localhost:8080/register/user
    - Every User Can sent message each-other
 
 ### View:
+![image](https://github.com/user-attachments/assets/cc94a479-d060-40a6-bd7b-05d5924c8d60)
 
 ## Chat App Version 1.0
 
