@@ -33,9 +33,9 @@ public class HammingDecode {
         int errorBit = Integer.parseInt(exx, 2);
 
         if (errorBit == 0) {
-            System.out.println("No error detected.");
+            // System.out.println("No error detected.");
         } else {
-            System.out.println("Error in bit position: " + errorBit);
+            // System.out.println("Error in bit position: " + errorBit);
             StringBuilder sb = new StringBuilder(s);
             char lol = sb.charAt(errorBit - 1); // Correct method is charAt()
             if (lol == '1') {
@@ -44,7 +44,7 @@ public class HammingDecode {
                 sb.setCharAt(errorBit - 1, '1'); // Use errorBit directly instead of errorBit-1
             }
             s = sb.toString();
-            System.out.println("Corrected message: " + s);
+            // System.out.println("Corrected message: " + s);
         }
 
         return s;
@@ -63,7 +63,7 @@ public class HammingDecode {
         }
 
         // Print the decoded text
-        System.out.println("Decoded text: " + binaryToString(decodeText.toString()));
+        // System.out.println("Decoded text: " + binaryToString(decodeText.toString()));
         return binaryToString(decodeText.toString());
     }
 
@@ -79,9 +79,9 @@ public class HammingDecode {
     }
 
     public String hdecode(String s) {
-        System.out.println("The Encoded test: " + s);
+        // System.out.println("The Encoded test: " + s);
         String fixedBit = hdecoding(s);
-        System.out.println("Final decode: ");
+        // System.out.println("Final decode: ");
         String ans = hToNormal(fixedBit);
         return ans;
     }

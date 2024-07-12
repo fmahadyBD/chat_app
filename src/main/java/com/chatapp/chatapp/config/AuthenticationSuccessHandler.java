@@ -1,12 +1,13 @@
 package com.chatapp.chatapp.config;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
-import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
@@ -17,7 +18,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
         if (isAdmin) {
             setDefaultTargetUrl("/admin/home");
         } else {
-            setDefaultTargetUrl("/user/home");
+            setDefaultTargetUrl("/home");
         }
         super.onAuthenticationSuccess(request, response, authentication);
     }

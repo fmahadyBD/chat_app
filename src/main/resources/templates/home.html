@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        nav {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .user-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: 900px;
+        }
+        .user-item {
+            margin-bottom: 15px; /* Space between list items */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+            border-radius: 8px;
+            background-color: #d1bdea;
+        }
+        .user-link {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        .user-link:hover {
+            background-color: #f9f9f9;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Card hover shadow */
+        }
+        .user-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: #d8d8d8;
+        }
+        .user-name {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <nav>Chat App</nav>
+    <div class="container">
+        <ul class="user-list">
+            <li th:each="user : ${alluserwithoutauth}" class="user-item">
+                <a th:href="@{/message/{reciverusername}(reciverusername=${user.username})}" class="user-link">
+                    <div class="user-image"></div>
+                    <span class="user-name" th:text="${user.name}"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

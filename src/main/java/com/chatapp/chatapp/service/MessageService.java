@@ -2,8 +2,12 @@ package com.chatapp.chatapp.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.chatapp.chatapp.algorithm.HammingDecode;
@@ -45,23 +49,26 @@ public class MessageService {
         return encodedMsg.toString();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public List<Message> getAllMessages() {
+    public List<Message> getAllMessages(String receiverUsername) {
         List<Message> messageList = repository.findAll();
+
+        // Debugging: Log the messages before filtering
+        // System.out.println("All messages: " + messageList);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+
+        // Filter messages where the authenticated user is either the sender or the receiver
+        messageList = messageList.stream()
+                .filter(message -> (username.equals(message.getUsername())
+                && receiverUsername.equals(message.getReciverusername()))
+                || (username.equals(message.getReciverusername())
+                && receiverUsername.equals(message.getUsername()))
+                )
+                .collect(Collectors.toList());
+
+        // Debugging: Log the messages after filtering
+        // System.out.println("Filtered messages: " + messageList);
         List<Message> decodedMessages = new ArrayList<>();
 
         for (Message originalMessage : messageList) {
@@ -73,6 +80,8 @@ public class MessageService {
             decodedMessageObj.setId(originalMessage.getId());  // Copy other fields as needed
             decodedMessageObj.setName(originalMessage.getName());
             decodedMessageObj.setMessages(decodedMessage);
+            decodedMessageObj.setUsername(originalMessage.getUsername());
+            decodedMessageObj.setReciverusername(originalMessage.getReciverusername());
 
             // Add the decoded message object to the new list
             decodedMessages.add(decodedMessageObj);
